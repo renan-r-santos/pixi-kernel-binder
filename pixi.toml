@@ -11,4 +11,6 @@ python = "3.12.*"
 jupyterlab = "4.1.*"
 jupyterhub = "4.1.*"
 notebook = "7.1.*"
-pixi-kernel = "0.1.*"
+
+[pypi-dependencies]
+pixi-kernel = "==0.2.0"
