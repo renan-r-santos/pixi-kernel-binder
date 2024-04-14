@@ -42,7 +42,9 @@ RUN echo '#!/bin/bash\n. /usr/local/share/pixi-activate.sh\nexec "$@"' > /usr/lo
 
 # Make sure the contents of this repo are in ${HOME} and owned by ${NB_USER}
 COPY . ${HOME}
-RUN chown -R ${NB_UID} ${HOME}
+RUN mkdir -p ${HOME}/.jupyter && \
+    cp jupyter_config.py ${HOME}/.jupyter && \
+    chown -R ${NB_UID} ${HOME}
 
 USER ${NB_USER}
 
