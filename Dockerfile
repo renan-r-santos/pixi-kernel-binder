@@ -54,7 +54,4 @@ COPY --from=pixi-builder /pixi-activate.sh /usr/local/share/pixi-activate.sh
 
 WORKDIR ${HOME}/work
 
-# Install the example
-RUN pixi install --manifest-path pixi.toml
-
 ENTRYPOINT ["/usr/local/share/docker-entrypoint.sh"]
