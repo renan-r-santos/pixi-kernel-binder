@@ -11,6 +11,7 @@ WORKDIR /opt/binder
 COPY pixi.toml pixi.toml
 COPY pixi.lock pixi.lock
 RUN pixi install && \
+    pixi run jupyter kernelspec uninstall python3 -y && \
     pixi shell-hook --shell bash > /pixi-activate.sh && \
     chmod +x /pixi-activate.sh
 
@@ -43,7 +44,7 @@ RUN echo '#!/bin/bash\n. /usr/local/share/pixi-activate.sh\nexec "$@"' > /usr/lo
 # Make sure the contents of this repo are in ${HOME} and owned by ${NB_USER}
 COPY . ${HOME}
 RUN mkdir -p ${HOME}/.jupyter && \
-    cp jupyter_config.py ${HOME}/.jupyter && \
+    cp ${HOME}/jupyter_config.py ${HOME}/.jupyter/jupyter_config.py && \
     chown -R ${NB_UID} ${HOME}
 
 USER ${NB_USER}
